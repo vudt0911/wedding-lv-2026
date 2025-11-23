@@ -158,7 +158,6 @@ export const weddingConfig: WeddingConfig = {
     // Hoặc dùng direct link từ CDN/cloud storage
     audioUrl: "/music/bai-nay-khong-de-di-dien.mp3", // File MP3 từ Zing MP3
     youtubeUrl: "https://www.youtube.com/watch?v=NOiI0sqiRoE",
-    zingMp3Url: "https://zingmp3.vn/bai-hat/Bai-nay-khong-de-di-dien-Anh-Tu-Atus/Z6W7OFD9.html",
     // Lưu ý: Zing MP3 không cho embed trực tiếp, cần download MP3 và đặt vào public/music/
     // Tên bài hát: "Bài này không dễ để đi diễn" - Anh Tú & Atus
   },

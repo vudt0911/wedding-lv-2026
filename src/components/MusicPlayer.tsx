@@ -4,7 +4,6 @@ import { FiMusic, FiVolumeX } from "react-icons/fi";
 const MusicPlayer = () => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [muted, setMuted] = useState(true); // Mặc định là muted (tắt)
-  const [isLoaded, setIsLoaded] = useState(false);
 
   // Sử dụng file MP3 từ thư mục src/data (cùng cấp với weddingConfig.ts)
   const src = new URL('../data/song.mp3', import.meta.url).href;
@@ -17,17 +16,6 @@ const MusicPlayer = () => {
     audio.preload = 'auto';
     audio.volume = 0.6;
     audio.muted = true; // Mặc định muted
-
-    // Khi audio đã load xong
-    const handleCanPlay = () => {
-      setIsLoaded(true);
-    };
-
-    audio.addEventListener('canplay', handleCanPlay);
-
-    return () => {
-      audio.removeEventListener('canplay', handleCanPlay);
-    };
   }, []);
 
   const toggleMusic = () => {
