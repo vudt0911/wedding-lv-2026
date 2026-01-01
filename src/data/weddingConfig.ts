@@ -51,6 +51,8 @@ export interface WeddingConfig {
     bridePhone: string;
     groomPhone: string;
     zaloLink: string;
+    brideFacebook: string;
+    groomFacebook: string;
   };
   bankInfo: {
     brideAccount: {
@@ -85,10 +87,10 @@ export const weddingConfig: WeddingConfig = {
     groomName: "Đinh Thế Vũ",
   },
   mainDate: {
-    isoString: "2026-03-08T09:00:00+07:00",
-    display: "09:00 - Ngày 08 Tháng 03 Năm 2026",
-    day: "08",
-    month: "03",
+    isoString: "2026-01-18T09:00:00+07:00",
+    display: "09:00 - Ngày 18 Tháng 01 Năm 2026",
+    day: "18",
+    month: "01",
     year: "2026",
   },
   brideSide: {
@@ -97,7 +99,7 @@ export const weddingConfig: WeddingConfig = {
     fatherName: "Hà Khắc Huynh",
     motherName: "Đinh Thị Tuyết",
     event: {
-      time: "09:00, ngày 08/03/2026",
+      time: "09:00, ngày 18/01/2026",
       addressLine1: "11A Trần Hưng Đạo 2",
       addressLine2: "Thôn Đồng Tiến, Phượng Dực, Hà Nội",
       mapUrl: "https://maps.google.com/",
@@ -109,7 +111,7 @@ export const weddingConfig: WeddingConfig = {
     fatherName: "Đinh Xuân Tuấn",
     motherName: " ",
     event: {
-      time: "09:00, ngày 08/03/2026",
+      time: "09:00, ngày 18/01/2026",
       addressLine1: "Số 4 Trần Phú",
       addressLine2: "Thôn Thượng, Phượng Dực, Hà Nội",
       mapUrl: "https://maps.google.com/",
@@ -123,14 +125,16 @@ export const weddingConfig: WeddingConfig = {
     ],
   },
   calendar: {
-    monthName: "THÁNG 3",
+    monthName: "THÁNG 1",
     year: "2026",
-    highlightDay: 8,
+    highlightDay: 18,
   },
   contacts: {
     bridePhone: "0352028686",
     groomPhone: "0868615662",
     zaloLink: "https://zalo.me/0352028686",
+    brideFacebook: "https://www.facebook.com/baolinh.ha.7",
+    groomFacebook: "https://www.facebook.com/thevu0911",
   },
   bankInfo: {
     brideAccount: {
@@ -145,13 +149,13 @@ export const weddingConfig: WeddingConfig = {
     },
   },
   images: {
-    stairHero: new URL('./image/1.jpg', import.meta.url).href,
-    saveTheDateMain: new URL('./image/2.jpeg', import.meta.url).href,
-    timelineTop: new URL('./image/3.jpeg', import.meta.url).href,
-    timelineBottom: new URL('./image/1.jpg', import.meta.url).href,
-    brideMain: new URL('./image/2.jpeg', import.meta.url).href,
-    groomMain: new URL('./image/3.jpeg', import.meta.url).href,
-    familyPhoto: new URL('./image/1.jpg', import.meta.url).href,
+    stairHero: "/image/DSC_1645.jpg",
+    saveTheDateMain: "/image/DSC_0941.jpg",
+    timelineTop: "/image/DSC_1181.jpg",
+    timelineBottom: "/image/DSC_1234.jpg",
+    brideMain: "/image/codau.jpg",
+    groomMain: "/image/DSC_1421.jpg",
+    familyPhoto: "/image/DSC_0976.jpg",
   },
   music: {
     // Đặt file MP3 vào public/music/ và cập nhật đường dẫn

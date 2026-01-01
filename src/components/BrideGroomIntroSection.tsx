@@ -45,7 +45,7 @@ const BrideGroomIntroSection = () => {
           >
             Cô dâu
           </motion.p>
-          
+
           <motion.div
             className="relative overflow-hidden rounded-3xl"
             style={{ y: brideY, opacity: brideOpacity }}
@@ -53,7 +53,7 @@ const BrideGroomIntroSection = () => {
             <motion.img
               src={weddingConfig.images.brideMain}
               alt="Cô dâu"
-              className="h-96 w-full object-cover"
+              className="h-96 w-full object-contain bg-gray-50"
               loading="lazy"
               style={{ scale: brideScale }}
             />
@@ -95,7 +95,7 @@ const BrideGroomIntroSection = () => {
           >
             Chú rể
           </motion.p>
-          
+
           <motion.div
             className="relative overflow-hidden rounded-3xl"
             style={{ y: groomY, opacity: groomOpacity }}
@@ -103,7 +103,7 @@ const BrideGroomIntroSection = () => {
             <motion.img
               src={weddingConfig.images.groomMain}
               alt="Chú rể"
-              className="h-96 w-full object-cover"
+              className="h-96 w-full object-contain bg-gray-50"
               loading="lazy"
               style={{ scale: groomScale }}
             />

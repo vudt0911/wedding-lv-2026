@@ -6,6 +6,12 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        'sm': '360px',  // Mobile-first: iPhone 11 Pro and larger
+        'md': '768px',  // Tablet
+        'lg': '1024px', // Desktop
+        'xl': '1280px', // Large desktop
+      },
       colors: {
         'wedding-pink': '#FFE5E5',
         'wedding-rose': '#FFB6C1',

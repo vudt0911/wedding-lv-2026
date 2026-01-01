@@ -9,6 +9,7 @@ interface PhotoAlbumProps {
 
 const PhotoAlbum = ({ images, autoPlayInterval = 4000 }: PhotoAlbumProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
   useEffect(() => {
@@ -40,8 +41,11 @@ const PhotoAlbum = ({ images, autoPlayInterval = 4000 }: PhotoAlbumProps) => {
 
   return (
     <div className="relative overflow-hidden rounded-3xl">
-      {/* Main Image with Fade Transition */}
-      <div className="relative aspect-[4/3] w-full">
+      {/* Main Image with Click for Lightbox */}
+      <div
+        className="relative aspect-[3/4] sm:aspect-[4/3] w-full cursor-zoom-in"
+        onClick={() => setIsLightboxOpen(true)}
+      >
         <AnimatePresence mode="wait">
           <motion.img
             key={currentIndex}
@@ -56,18 +60,18 @@ const PhotoAlbum = ({ images, autoPlayInterval = 4000 }: PhotoAlbumProps) => {
           />
         </AnimatePresence>
 
-        {/* Navigation Arrows */}
+        {/* Navigation Arrows (In-place) */}
         {images.length > 1 && (
           <>
             <button
-              onClick={goToPrevious}
+              onClick={(e) => { e.stopPropagation(); goToPrevious(); }}
               className="absolute left-4 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 backdrop-blur-sm text-gray-700 shadow-lg transition-all hover:bg-white hover:scale-110"
               aria-label="Previous photo"
             >
               <FiChevronLeft className="text-xl" />
             </button>
             <button
-              onClick={goToNext}
+              onClick={(e) => { e.stopPropagation(); goToNext(); }}
               className="absolute right-4 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 backdrop-blur-sm text-gray-700 shadow-lg transition-all hover:bg-white hover:scale-110"
               aria-label="Next photo"
             >
@@ -91,11 +95,10 @@ const PhotoAlbum = ({ images, autoPlayInterval = 4000 }: PhotoAlbumProps) => {
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`relative flex-shrink-0 overflow-hidden rounded-lg transition-all ${
-                index === currentIndex
-                  ? 'ring-2 ring-pink-400 ring-offset-2'
-                  : 'opacity-60 hover:opacity-100'
-              }`}
+              className={`relative flex-shrink-0 overflow-hidden rounded-lg transition-all ${index === currentIndex
+                ? 'ring-2 ring-pink-400 ring-offset-2'
+                : 'opacity-60 hover:opacity-100'
+                }`}
             >
               <img
                 src={img}
@@ -107,6 +110,67 @@ const PhotoAlbum = ({ images, autoPlayInterval = 4000 }: PhotoAlbumProps) => {
           ))}
         </div>
       )}
+
+      {/* Lightbox Overlay */}
+      <AnimatePresence>
+        {isLightboxOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 backdrop-blur-md"
+            onClick={() => setIsLightboxOpen(false)}
+          >
+            {/* Close Button */}
+            <button
+              className="absolute top-4 right-4 text-white/80 hover:text-white transition-colors"
+              onClick={() => setIsLightboxOpen(false)}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            {/* Lightbox Image */}
+            <motion.div
+              className="relative max-h-full max-w-full"
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.9 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src={images[currentIndex]}
+                alt={`Full screen ${currentIndex + 1}`}
+                className="max-h-[90vh] max-w-[95vw] object-contain rounded-lg shadow-2xl"
+              />
+
+              {/* Lightbox Navigation */}
+              {images.length > 1 && (
+                <>
+                  <button
+                    onClick={(e) => { e.stopPropagation(); goToPrevious(); }}
+                    className="absolute -left-4 sm:-left-12 top-1/2 -translate-y-1/2 p-2 text-white/80 hover:text-white hover:scale-110 transition-transform"
+                  >
+                    <FiChevronLeft className="text-3xl sm:text-4xl" />
+                  </button>
+                  <button
+                    onClick={(e) => { e.stopPropagation(); goToNext(); }}
+                    className="absolute -right-4 sm:-right-12 top-1/2 -translate-y-1/2 p-2 text-white/80 hover:text-white hover:scale-110 transition-transform"
+                  >
+                    <FiChevronRight className="text-3xl sm:text-4xl" />
+                  </button>
+                </>
+              )}
+            </motion.div>
+
+            {/* Lightbox Counter */}
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/90 font-medium tracking-widest text-sm">
+              {currentIndex + 1} / {images.length}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

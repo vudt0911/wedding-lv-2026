@@ -1,18 +1,53 @@
 import { motion } from 'framer-motion';
-import { weddingConfig } from '../data/weddingConfig';
 import PhotoAlbum from './PhotoAlbum';
 
+import { weddingConfig } from '../data/weddingConfig';
+
 const GallerySection = () => {
-  // Tạo danh sách ảnh cho album từ các ảnh có sẵn
-  const albumImages = [
-    weddingConfig.images.familyPhoto,
-    weddingConfig.images.saveTheDateMain,
-    weddingConfig.images.stairHero,
-    weddingConfig.images.brideMain,
-    weddingConfig.images.groomMain,
-    weddingConfig.images.timelineTop,
-    weddingConfig.images.timelineBottom,
-  ].filter(Boolean); // Loại bỏ ảnh null/undefined
+  // Get list of used images to filter out
+  const usedImages = Object.values(weddingConfig.images);
+
+  // Tất cả ảnh từ public/image
+  const allImages = [
+    "/image/DSC_0166f.jpg",
+    "/image/DSC_0188f.jpg",
+    "/image/DSC_0270f.jpg",
+    "/image/DSC_0277f.jpg",
+    "/image/DSC_0305.jpg",
+    "/image/DSC_0322f.jpg",
+    "/image/DSC_0459f.jpg",
+    "/image/DSC_0722f.jpg",
+    "/image/DSC_0828f.jpg",
+    "/image/DSC_0872f.jpg",
+    "/image/DSC_0941.jpg",
+    "/image/DSC_0942.jpg",
+    "/image/DSC_0976.jpg",
+    "/image/DSC_0985.jpg",
+    "/image/DSC_0997.jpg",
+    "/image/DSC_1002.jpg",
+    "/image/DSC_1041.jpg",
+    "/image/DSC_1056.jpg",
+    "/image/DSC_1059.jpg",
+    "/image/DSC_1139.jpg",
+    "/image/DSC_1156.jpg",
+    "/image/DSC_1161.jpg",
+    "/image/DSC_1165.jpg",
+    "/image/DSC_1181.jpg",
+    "/image/DSC_1215.jpg",
+    "/image/DSC_1234.jpg",
+    "/image/DSC_1357.jpg",
+    "/image/DSC_1376.jpg",
+    "/image/DSC_1385.jpg",
+    "/image/DSC_1421.jpg",
+    "/image/DSC_1622.jpg",
+    "/image/DSC_1636.jpg",
+    "/image/DSC_1645.jpg",
+    "/image/DSC_1755.jpg",
+    "/image/codau.jpg",
+  ];
+
+  // Filter out duplicates
+  const albumImages = allImages.filter(img => !usedImages.includes(img));
 
   return (
     <motion.section

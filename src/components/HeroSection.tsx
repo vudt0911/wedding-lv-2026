@@ -34,12 +34,13 @@ const HeroSection = () => {
           src={weddingConfig.images.stairHero}
           alt="Cặp đôi"
           className="h-80 w-full object-cover"
+          // className="h-96 sm:h-[500px] w-full object-contain bg-gray-50"
           loading="eager"
           whileInView={{ scale: 1.05 }}
           viewport={{ once: true }}
           transition={{ duration: 1.2, ease: "easeOut" }}
         />
-        {/* Date Overlay */}
+        {/* Date Overlay - Enhanced */}
         <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
           <motion.span
             initial={{ opacity: 0, x: -20 }}
@@ -55,7 +56,7 @@ const HeroSection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-xl font-script text-white drop-shadow-lg"
+            className="text-2xl sm:text-3xl font-script font-bold text-white bg-black/40 backdrop-blur-sm px-4 py-2 rounded-full drop-shadow-2xl"
           >
             {weddingConfig.mainDate.year}
           </motion.span>
@@ -70,12 +71,10 @@ const HeroSection = () => {
         transition={{ duration: 0.6, delay: 0.2 }}
         className="space-y-4 text-center"
       >
-        <p className="text-base leading-relaxed text-gray-700">
-          Trân trọng kính mời{' '}
-          <span className="font-script text-2xl font-bold text-wedding-rose">
-            {guestName}
-          </span>
-        </p>
+        <p className="text-base leading-relaxed text-gray-700">Trân trọng kính mời{' '}</p>
+        <span className="font-script text-2xl font-bold text-wedding-rose">
+          {guestName}
+        </span>
         <p className="text-base leading-relaxed text-gray-700">
           tới dự bữa tiệc mừng lễ thành hôn của hai chúng tôi
         </p>
@@ -84,7 +83,7 @@ const HeroSection = () => {
           <h2 className="text-3xl font-script text-gray-800">
             {weddingConfig.couple.groomName}
           </h2>
-          <span className="text-2xl text-wedding-rose">và</span>
+          <span className="font-script text-2xl font-bold text-wedding-rose">&</span>
           <h2 className="text-3xl font-script text-gray-800">
             {weddingConfig.couple.brideName}
           </h2>
