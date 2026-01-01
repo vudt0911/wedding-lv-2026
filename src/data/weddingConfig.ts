@@ -133,8 +133,8 @@ export const weddingConfig: WeddingConfig = {
     bridePhone: "0352028686",
     groomPhone: "0868615662",
     zaloLink: "https://zalo.me/0352028686",
-    brideFacebook: "https://www.facebook.com/baolinh.ha.7",
-    groomFacebook: "https://www.facebook.com/thevu0911",
+    brideFacebook: "https://m.me/baolinh.ha.7",
+    groomFacebook: "https://m.me/thevu0911",
   },
   bankInfo: {
     brideAccount: {
