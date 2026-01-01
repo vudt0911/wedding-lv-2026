@@ -10,15 +10,9 @@ const GallerySection = () => {
   // Tất cả ảnh từ public/image
   const allImages = [
     "/image/DSC_0166f.jpg",
-    "/image/DSC_0188f.jpg",
     "/image/DSC_0270f.jpg",
-    "/image/DSC_0277f.jpg",
-    "/image/DSC_0305.jpg",
     "/image/DSC_0322f.jpg",
     "/image/DSC_0459f.jpg",
-    "/image/DSC_0722f.jpg",
-    "/image/DSC_0828f.jpg",
-    "/image/DSC_0872f.jpg",
     "/image/DSC_0941.jpg",
     "/image/DSC_0942.jpg",
     "/image/DSC_0976.jpg",
@@ -38,7 +32,6 @@ const GallerySection = () => {
     "/image/DSC_1357.jpg",
     "/image/DSC_1376.jpg",
     "/image/DSC_1385.jpg",
-    "/image/DSC_1421.jpg",
     "/image/DSC_1622.jpg",
     "/image/DSC_1636.jpg",
     "/image/DSC_1645.jpg",

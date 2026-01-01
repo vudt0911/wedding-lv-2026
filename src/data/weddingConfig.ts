@@ -154,7 +154,7 @@ export const weddingConfig: WeddingConfig = {
     timelineTop: "/image/DSC_1181.jpg",
     timelineBottom: "/image/DSC_1234.jpg",
     brideMain: "/image/codau.jpg",
-    groomMain: "/image/DSC_1421.jpg",
+    groomMain: "/image/DSC_1385.jpg",
     familyPhoto: "/image/DSC_0976.jpg",
   },
   music: {
