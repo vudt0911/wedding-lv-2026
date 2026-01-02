@@ -75,7 +75,8 @@ export interface WeddingConfig {
     timelineBottom: string;
     brideMain: string;
     groomMain: string;
-    familyPhoto: string;
+    familyPhoto?: string;
+    processionMap?: string;
   };
   music: {
     audioUrl?: string;
@@ -173,6 +174,7 @@ export const weddingConfig: WeddingConfig = {
     saveTheDateMain: "/image/DSC_0941.jpg",
     timelineTop: "/image/DSC_1181.jpg",
     timelineBottom: "/image/DSC_1234.jpg",
+    processionMap: "/image/procession-map.png",
     brideMain: "/image/DSC_0459f.jpg",
     groomMain: "/image/DSC_1002.jpg",
     familyPhoto: "/image/DSC_0976.jpg",
