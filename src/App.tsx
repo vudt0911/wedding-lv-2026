@@ -2,6 +2,7 @@ import HeroSection from "./components/HeroSection";
 import EventInfoSection from "./components/EventInfoSection";
 import CalendarSection from "./components/CalendarSection";
 import BrideGroomIntroSection from "./components/BrideGroomIntroSection";
+import InvitationSection from "./components/InvitationSection";
 import GallerySection from "./components/GallerySection";
 import RsvpSection from "./components/RsvpSection";
 import GiftSection from "./components/GiftSection";
@@ -13,14 +14,15 @@ function App() {
   return (
     <div className="min-h-screen bg-slate-100">
       <Header />
-      <main className="mx-auto flex max-w-md flex-col gap-6 px-4 pb-24 pt-20">
+      <main className="mx-auto flex max-w-md flex-col gap-12 px-4 pb-24 pt-20">
         <HeroSection />
-        <EventInfoSection />
         <CalendarSection />
+        {/* <EventInfoSection /> */}
         <BrideGroomIntroSection />
         <GallerySection />
-        <RsvpSection />
-        <GiftSection />
+        <InvitationSection />
+        {/* <RsvpSection /> */}
+        {/* <GiftSection /> */}
       </main>
       <MusicPlayer />
       <BackToTopButton />

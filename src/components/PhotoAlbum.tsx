@@ -43,19 +43,36 @@ const PhotoAlbum = ({ images, autoPlayInterval = 4000 }: PhotoAlbumProps) => {
     <div className="relative overflow-hidden rounded-3xl">
       {/* Main Image with Click for Lightbox */}
       <div
-        className="relative aspect-[3/4] sm:aspect-[4/3] w-full cursor-zoom-in"
+        className="relative aspect-[3/4] md:aspect-[16/9] w-full cursor-zoom-in overflow-hidden bg-gray-100/50"
         onClick={() => setIsLightboxOpen(true)}
       >
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="popLayout">
+          {/* Background Layer (Blurred) */}
+          <motion.div
+            key={`bg-${currentIndex}`}
+            className="absolute inset-0 z-0"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <img
+              src={images[currentIndex]}
+              alt=""
+              className="h-full w-full object-cover blur-2xl opacity-50 scale-110"
+            />
+          </motion.div>
+
+          {/* Main Image Layer (Contained) */}
           <motion.img
             key={currentIndex}
             src={images[currentIndex]}
             alt={`Photo ${currentIndex + 1}`}
-            className="h-full w-full object-cover"
-            initial={{ opacity: 0, scale: 1.1 }}
+            className="relative z-10 h-full w-full object-contain drop-shadow-xl"
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            transition={{ duration: 0.6, ease: "easeInOut" }}
+            exit={{ opacity: 0, scale: 1.05 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
             loading="lazy"
           />
         </AnimatePresence>

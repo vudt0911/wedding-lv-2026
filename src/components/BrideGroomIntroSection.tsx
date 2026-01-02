@@ -1,130 +1,202 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { motion } from 'framer-motion';
+import { FiPhone, FiMapPin } from 'react-icons/fi';
 import { weddingConfig } from '../data/weddingConfig';
 
 const BrideGroomIntroSection = () => {
-  const brideRef = useRef<HTMLDivElement>(null);
-  const groomRef = useRef<HTMLDivElement>(null);
-
-  // Parallax scroll cho ảnh cô dâu
-  const { scrollYProgress: brideScrollY } = useScroll({
-    target: brideRef,
-    offset: ["start end", "end start"]
-  });
-  const brideY = useTransform(brideScrollY, [0, 1], [50, -50]);
-  const brideOpacity = useTransform(brideScrollY, [0, 0.5, 1], [0, 1, 1]);
-  const brideScale = useTransform(brideScrollY, [0, 0.5, 1], [0.8, 1.1, 1.05]);
-
-  // Parallax scroll cho ảnh chú rể
-  const { scrollYProgress: groomScrollY } = useScroll({
-    target: groomRef,
-    offset: ["start end", "end start"]
-  });
-  const groomY = useTransform(groomScrollY, [0, 1], [-50, 50]);
-  const groomOpacity = useTransform(groomScrollY, [0, 0.5, 1], [0, 1, 1]);
-  const groomScale = useTransform(groomScrollY, [0, 0.5, 1], [0.8, 1.1, 1.05]);
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+  };
 
   return (
-    <div className="space-y-6">
+    <div className="w-full max-w-7xl mx-auto space-y-12">
       {/* Bride Section */}
-      <motion.section
-        ref={brideRef}
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, amount: 0.2 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="rounded-3xl bg-white p-5 shadow-[0_18px_40px_rgba(15,23,42,0.12)]"
-      >
-        <div className="flex flex-col gap-4">
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-4xl md:text-5xl font-script text-wedding-rose text-center"
-          >
-            Cô dâu
-          </motion.p>
-
+      <section className="relative">
+        <div className="flex flex-col xl:flex-row items-center gap-8 xl:gap-16">
+          {/* Image Side - Left on Desktop */}
           <motion.div
-            className="relative overflow-hidden rounded-3xl"
-            style={{ y: brideY, opacity: brideOpacity }}
+            className="w-full xl:w-5/12"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeInUp}
           >
-            <motion.img
-              src={weddingConfig.images.brideMain}
-              alt="Cô dâu"
-              className="h-96 w-full object-contain bg-gray-50"
-              loading="lazy"
-              style={{ scale: brideScale }}
-            />
-            {/* Overlay gradient effect */}
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent"
-              style={{ opacity: useTransform(brideScrollY, [0, 0.5, 1], [0.3, 0.1, 0]) }}
-            />
+            <div className="relative group">
+              <div className="absolute inset-0 bg-wedding-rose/20 rounded-[2rem] transform rotate-3 transition-transform group-hover:rotate-6 duration-500"></div>
+              <div className="relative overflow-hidden rounded-[2rem] shadow-2xl bg-white p-2">
+                <img
+                  src={weddingConfig.images.brideMain}
+                  alt="Cô dâu"
+                  className="w-full h-[500px] xl:h-[600px] object-cover rounded-[1.8rem]"
+                  loading="lazy"
+                />
+              </div>
+            </div>
           </motion.div>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-3xl font-bold text-gray-800 text-center"
+          {/* Content Side - Right on Desktop */}
+          <motion.div
+            className="w-full xl:w-7/12 text-center xl:text-left space-y-6"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeInUp}
           >
-            {weddingConfig.brideSide.brideName.toUpperCase()}
-          </motion.h2>
+            <h2 className="text-5xl xl:text-6xl font-script text-wedding-rose">
+              Cô dâu {weddingConfig.couple.brideName}
+            </h2>
+
+            {weddingConfig.brideSide.description && (
+              <p className="text-gray-600 leading-loose text-lg italic relative py-4">
+                <span className="hidden xl:inline-block absolute -top-2 -left-4 text-6xl text-wedding-rose/20 font-serif">"</span>
+                {weddingConfig.brideSide.description}
+                <span className="hidden xl:inline-block absolute -bottom-8 -right-4 text-6xl text-wedding-rose/20 font-serif">"</span>
+              </p>
+            )}
+
+            <div className="bg-wedding-cream/30 rounded-2xl p-6 xl:p-8 mt-8 border border-wedding-gold/10 hover:border-wedding-gold/30 transition-colors">
+              <h3 className="text-2xl font-bold text-gray-800 mb-4 font-serif uppercase tracking-wider text-wedding-gold/80">
+                {weddingConfig.brideSide.title}
+              </h3>
+
+              <div className="space-y-3">
+                <div className="flex flex-col xl:flex-row xl:items-center gap-2 xl:gap-4 text-gray-700">
+                  <span className="font-semibold min-w-20">Phụ huynh:</span>
+                  <div className="flex flex-col xl:flex-row xl:gap-6">
+                    <span>Ông {weddingConfig.brideSide.fatherName}</span>
+                    <span className="hidden xl:block text-wedding-rose">•</span>
+                    <span>Bà {weddingConfig.brideSide.motherName}</span>
+                  </div>
+                </div>
+
+                <div className="flex flex-col xl:flex-row xl:items-start gap-2 xl:gap-4 text-gray-700">
+                  <span className="font-semibold min-w-20">Tư gia:</span>
+                  <div>
+                    <p>{weddingConfig.brideSide.event.addressLine1}</p>
+                    <p className="text-gray-500 text-sm mt-1">{weddingConfig.brideSide.event.addressLine2}</p>
+                    <a
+                      href={weddingConfig.brideSide.event.mapUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-sm text-wedding-rose hover:underline mt-1 font-medium"
+                    >
+                      <FiMapPin size={14} />
+                      Chỉ đường
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex flex-col items-center xl:flex-row xl:items-center gap-2 xl:gap-4 text-gray-700 pt-4">
+                  <span className="font-semibold">Liên hệ cô dâu {weddingConfig.couple.brideName}:</span>
+                  <a
+                    href={`tel:${weddingConfig.contacts.bridePhone}`}
+                    className="inline-flex items-center gap-2 text-wedding-rose hover:text-white bg-white hover:bg-wedding-rose transition-all duration-300 font-medium px-5 py-2 rounded-full shadow-sm hover:shadow-md border border-wedding-rose/30 group w-fit"
+                  >
+                    <FiPhone className="group-hover:animate-pulse" />
+                    {weddingConfig.contacts.bridePhone}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Groom Section */}
-      <motion.section
-        ref={groomRef}
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, amount: 0.2 }}
-        transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
-        className="rounded-3xl bg-white p-5 shadow-[0_18px_40px_rgba(15,23,42,0.12)]"
-      >
-        <div className="flex flex-col gap-4">
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-4xl md:text-5xl font-script text-wedding-rose text-center"
-          >
-            Chú rể
-          </motion.p>
-
+      <section className="relative">
+        <div className="flex flex-col xl:flex-row-reverse items-center gap-8 xl:gap-16">
+          {/* Image Side - Right on Desktop */}
           <motion.div
-            className="relative overflow-hidden rounded-3xl"
-            style={{ y: groomY, opacity: groomOpacity }}
+            className="w-full xl:w-5/12"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeInUp}
           >
-            <motion.img
-              src={weddingConfig.images.groomMain}
-              alt="Chú rể"
-              className="h-96 w-full object-contain bg-gray-50"
-              loading="lazy"
-              style={{ scale: groomScale }}
-            />
-            {/* Overlay gradient effect */}
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent"
-              style={{ opacity: useTransform(groomScrollY, [0, 0.5, 1], [0.3, 0.1, 0]) }}
-            />
+            <div className="relative group">
+              <div className="absolute inset-0 bg-blue-100 rounded-[2rem] transform -rotate-3 transition-transform group-hover:-rotate-6 duration-500"></div>
+              <div className="relative overflow-hidden rounded-[2rem] shadow-2xl bg-white p-2">
+                <img
+                  src={weddingConfig.images.groomMain}
+                  alt="Chú rể"
+                  className="w-full h-[500px] xl:h-[600px] object-cover rounded-[1.8rem]"
+                  loading="lazy"
+                />
+              </div>
+            </div>
           </motion.div>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-3xl font-bold text-gray-800 text-center"
+          {/* Content Side - Left on Desktop */}
+          <motion.div
+            className="w-full xl:w-7/12 text-center xl:text-right space-y-6"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeInUp}
           >
-            {weddingConfig.groomSide.groomName.toUpperCase()}
-          </motion.h2>
+            <h2 className="text-5xl xl:text-6xl font-script text-wedding-rose">
+              Chú rể {weddingConfig.couple.groomName}
+            </h2>
+
+            {weddingConfig.groomSide.description && (
+              <p className="text-gray-600 leading-loose text-lg italic relative py-4">
+                <span className="hidden xl:inline-block absolute -top-2 -right-4 text-6xl text-wedding-rose/20 font-serif">"</span>
+                {weddingConfig.groomSide.description}
+                <span className="hidden xl:inline-block absolute -bottom-8 -left-4 text-6xl text-wedding-rose/20 font-serif">"</span>
+              </p>
+            )}
+
+            <div className="bg-blue-50/50 rounded-2xl p-6 xl:p-8 mt-8 border border-blue-100 hover:border-blue-200 transition-colors">
+              <h3 className="text-2xl font-bold text-gray-800 mb-4 font-serif uppercase tracking-wider text-blue-300">
+                {weddingConfig.groomSide.title}
+              </h3>
+
+              <div className="space-y-3">
+                <div className="flex flex-col xl:flex-row-reverse xl:items-center gap-2 xl:gap-4 text-gray-700">
+                  <span className="font-semibold min-w-20">Phụ huynh:</span>
+                  <div className="flex flex-col xl:flex-row xl:gap-6">
+                    <span>Ông {weddingConfig.groomSide.fatherName}</span>
+                    {weddingConfig.groomSide.motherName && (
+                      <>
+                        <span className="hidden xl:block text-wedding-rose">•</span>
+                        <span>Bà {weddingConfig.groomSide.motherName}</span>
+                      </>
+                    )}
+                  </div>
+                </div>
+
+                <div className="flex flex-col xl:flex-row-reverse xl:items-start gap-2 xl:gap-4 text-gray-700">
+                  <span className="font-semibold min-w-20">Tư gia:</span>
+                  <div>
+                    <p>{weddingConfig.groomSide.event.addressLine1}</p>
+                    <p className="text-gray-500 text-sm mt-1">{weddingConfig.groomSide.event.addressLine2}</p>
+                    <a
+                      href={weddingConfig.groomSide.event.mapUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-sm text-blue-500 hover:underline mt-1 font-medium"
+                    >
+                      <FiMapPin size={14} />
+                      Chỉ đường
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex flex-col items-center xl:flex-row xl:justify-end xl:items-center gap-2 xl:gap-4 text-gray-700 pt-4">
+                  <span className="font-semibold">Liên hệ chú rể {weddingConfig.couple.groomName}:</span>
+                  <a
+                    href={`tel:${weddingConfig.contacts.groomPhone}`}
+                    className="inline-flex items-center gap-2 text-blue-500 hover:text-white bg-white hover:bg-blue-400 transition-all duration-300 font-medium px-5 py-2 rounded-full shadow-sm hover:shadow-md border border-blue-200 group w-fit"
+                  >
+                    <FiPhone className="group-hover:animate-pulse" />
+                    {weddingConfig.contacts.groomPhone}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
-      </motion.section>
+      </section>
     </div>
   );
 };
