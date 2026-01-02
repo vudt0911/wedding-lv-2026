@@ -6,7 +6,7 @@ import { weddingConfig } from '../data/weddingConfig';
 const InvitationSection = () => {
     const [guestName, setGuestName] = useState("");
     const [isGiftOpen, setIsGiftOpen] = useState(false);
-    const [amount, setAmount] = useState("");
+    const [amount] = useState("");
     const [copied, setCopied] = useState<string | null>(null);
 
     // Parse guest name from URL
@@ -37,15 +37,15 @@ const InvitationSection = () => {
         ? `https://img.vietqr.io/image/${bankId}-${accountNo}-${template}.png?amount=${cleanAmount}&addInfo=${encodeURIComponent(description)}&accountName=${encodeURIComponent(weddingConfig.bankInfo.account.ownerName)}`
         : weddingConfig.bankInfo.account.qrCode;
 
-    const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        // Format currency display
-        const value = e.target.value.replace(/[^0-9]/g, '');
-        if (value) {
-            setAmount(parseInt(value).toLocaleString('vi-VN'));
-        } else {
-            setAmount("");
-        }
-    };
+    // const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     // Format currency display
+    //     const value = e.target.value.replace(/[^0-9]/g, '');
+    //     if (value) {
+    //         setAmount(parseInt(value).toLocaleString('vi-VN'));
+    //     } else {
+    //         setAmount("");
+    //     }
+    // };
 
     return (
         <motion.section
