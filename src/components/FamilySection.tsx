@@ -12,7 +12,7 @@ const FamiliesSection = () => {
     weddingConfig.images.groomMain,
     weddingConfig.images.timelineTop,
     weddingConfig.images.timelineBottom,
-  ].filter(Boolean); // Loại bỏ ảnh null/undefined
+  ].filter(Boolean) as string[]; // Loại bỏ ảnh null/undefined
 
   return (
     <motion.section

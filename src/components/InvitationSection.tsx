@@ -137,7 +137,7 @@ const InvitationSection = () => {
                                 </div>
 
                                 {/* Input Amount Feature */}
-                                <div className="mb-4 text-left">
+                                {/* <div className="mb-4 text-left">
                                     <label className="text-xs font-semibold text-gray-500 ml-1 mb-1 block">Nhập số tiền (VND)</label>
                                     <div className="relative">
                                         <input
@@ -152,7 +152,7 @@ const InvitationSection = () => {
                                     <p className="text-[10px] text-gray-400 mt-1.5 ml-1 italic">
                                         * Mã QR sẽ tự động cập nhật theo số tiền
                                     </p>
-                                </div>
+                                </div> */}
 
                                 {/* Dynamic QR */}
                                 <div className="mb-6 p-3 bg-white rounded-xl shadow-sm border border-stone-100">

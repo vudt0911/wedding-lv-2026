@@ -205,26 +205,18 @@ const BrideGroomIntroSection = () => {
         viewport={{ once: true, margin: "-100px" }}
         variants={fadeInUp}
       >
-        <div className="text-center mb-8">
-          <h3 className="text-2xl md:text-3xl font-script text-gray-800 mb-2">
+        <div className="text-center mb-6">
+          <div className="inline-block px-6 py-2 rounded-full bg-stone-50 text-stone-600 font-bold uppercase tracking-widest text-sm border border-stone-100">
             Lộ Trình Rước Dâu
-          </h3>
-          <div className="w-16 h-1 bg-wedding-gold/50 mx-auto rounded-full"></div>
+          </div>
         </div>
 
-        <div className="relative group">
-          <div className="absolute inset-0 bg-wedding-cream/30 rounded-3xl transform rotate-1 transition-transform group-hover:rotate-0 duration-500"></div>
-          <div className="relative bg-white p-2 rounded-3xl shadow-lg overflow-hidden border border-stone-100">
-            <img
-              src={weddingConfig.images.processionMap}
-              alt="Sơ đồ rước dâu"
-              className="w-full h-auto object-contain rounded-2xl"
-            />
-          </div>
-
-          <div className="text-center mt-4 text-gray-500 italic text-sm">
-            Sơ đồ di chuyển từ nhà gái về nhà trai
-          </div>
+        <div className="rounded-2xl overflow-hidden shadow-sm border border-stone-100 bg-white">
+          <img
+            src={weddingConfig.images.processionMap}
+            alt="Sơ đồ rước dâu"
+            className="w-full h-auto object-contain"
+          />
         </div>
       </motion.section>
     </div>
