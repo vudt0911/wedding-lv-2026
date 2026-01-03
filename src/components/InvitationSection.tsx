@@ -83,6 +83,9 @@ const InvitationSection = () => {
                     <p className="italic text-gray-600 px-4">
                         "Sự hiện diện của quý khách là niềm vui và vinh hạnh cho gia đình chúng tôi"
                     </p>
+                    <p className="italic font-medium text-red-600 px-4">
+                        Cảm ơn mọi người vì đã và sẽ tham dự và đồng hành cùng gia đình trong sự kiện trọng đại này
+                    </p>
                 </div>
             </div>
 
